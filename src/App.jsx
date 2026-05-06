@@ -763,7 +763,8 @@ export default function PTApp() {
             <div style={{width:28,height:28,background:T.red,borderRadius:4,display:"flex",alignItems:"center",justifyContent:"center"}}>
               <div style={{width:12,height:12,border:"2px solid #fff",borderRadius:"50%"}} />
             </div>
-            <div style={{color:"#fff",fontSize:16,fontFamily:"Oswald",fontWeight:700,letterSpacing:2}}>PT PRO</div>
+            <div style={{color:"#fff",fontSize:16,fontFamily:"Oswald",fontWeight:700,letterSpacing:2}}>FitPlan
+By Master Trainer Armin HuyTran - Tài liệu đào tạo nội bộ</div>
           </div>
           <div style={{color:"#555",fontSize:10,fontFamily:"DM Sans",letterSpacing:1.5}}>NASM STANDARD · INTERNAL</div>
         </div>
