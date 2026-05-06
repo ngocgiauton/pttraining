@@ -452,15 +452,15 @@ function App() {
         <div className="brand-block">
           <div className="brand-mark">A</div>
           <div>
-            <p className="eyebrow">Internal PT Academy</p>
-            <h1>Academy</h1>
+            <p className="eyebrow">Internal Training</p>
+            <h1>PT Manual</h1>
           </div>
         </div>
 
         <div className="sidebar-card">
-          <p className="tiny-title">NASM OPT</p>
-          <h2>Phần 4: Training Techniques</h2>
-          <p>Biến lý thuyết thành hành động qua 6 mảng kỹ thuật huấn luyện cốt lõi.</p>
+          <p className="tiny-title">By Master Trainer Armin HuyTran</p>
+          <h2>Tài liệu training nội bộ</h2>
+          <p>Hệ thống kỹ thuật tập luyện, phục hồi và kiểm soát chuyển động dành cho PT.</p>
         </div>
 
         <nav className="module-nav">
@@ -480,20 +480,76 @@ function App() {
       <section className="content">
         <header className="hero">
           <div>
-            <p className="eyebrow red">European Clean System</p>
-            <h2>Giáo trình đào tạo PT nội bộ</h2>
+            <p className="eyebrow red">By Master Trainer Armin HuyTran</p>
+            <h2>Tài liệu training nội bộ</h2>
             <p className="hero-copy">
-              Giao diện trắng, chữ đen, điểm nhấn đỏ mạnh mẽ. Nội dung được tổ chức theo chuẩn học - hiểu - thực hành - sửa lỗi để PT dùng trực tiếp khi đào tạo và tư vấn khách hàng.
+              Thư viện kỹ thuật tập luyện dành cho PT: tra cứu nhanh, hướng dẫn rõ, ứng dụng trực tiếp trong đào tạo và tư vấn khách hàng.
             </p>
           </div>
           <div className="hero-panel">
-            <span>By Master Armin HuyTran</span>
-            <strong>Part 4</strong>
-            <small>Applied Training Techniques</small>
+            <span>PT Internal Manual</span>
+            <strong>150</strong>
+            <small>Training Techniques</small>
           </div>
         </header>
 
-        <section className="grid-overview">
+        <section className="technique-library featured-library">
+          <div className="section-heading compact">
+            <span>150 Training Techniques</span>
+            <h2>Thư viện kỹ thuật tập luyện</h2>
+            <p>Tra cứu theo tên bài, vùng cơ - xương - khớp, mục tiêu huấn luyện hoặc nhóm kỹ thuật. Mỗi kỹ thuật gồm: vùng tác động, mục tiêu và cue hướng dẫn ngắn cho PT.</p>
+          </div>
+
+          <div className="library-toolbar">
+            <input
+              value={techniqueQuery}
+              onChange={(e) => setTechniqueQuery(e.target.value)}
+              placeholder="Tìm nhanh: vai, gối, hông, core, squat, phục hồi..."
+            />
+            <select value={techniqueCategory} onChange={(e) => setTechniqueCategory(e.target.value)}>
+              {techniqueCategories.map((item) => (
+                <option key={item} value={item}>{item}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="library-summary-row">
+            <div className="library-stats">
+              <strong>{filteredTechniques.length}</strong>
+              <span>kỹ thuật hiển thị</span>
+            </div>
+            <div className="library-note">Tổng dữ liệu: 150 kỹ thuật • Mobility • Strength • Corrective • Recovery</div>
+          </div>
+
+          <div className="technique-table-wrap">
+            <table className="technique-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Kỹ thuật</th>
+                  <th>Nhóm</th>
+                  <th>Vùng tác động</th>
+                  <th>Mục tiêu</th>
+                  <th>Cue PT</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredTechniques.map((item) => (
+                  <tr key={item.no}>
+                    <td>{item.no}</td>
+                    <td><b>{item.name}</b></td>
+                    <td><span className="category-pill">{item.category}</span></td>
+                    <td>{item.region}</td>
+                    <td>{item.goal}</td>
+                    <td>{item.cue}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section className="grid-overview compact-overview">
           {optPhases.map((phase) => (
             <article className="phase-card" key={phase.phase}>
               <span style={{ color: phase.color }}>{phase.phase}</span>
@@ -570,59 +626,6 @@ function App() {
           </aside>
         </section>
 
-        <section className="technique-library">
-          <div className="section-heading compact">
-            <span>150 Training Techniques</span>
-            <h2>Thư viện tra cứu kỹ thuật tập luyện</h2>
-            <p>Danh sách 150 kỹ thuật/bài tập được phân nhóm theo mobility, flexibility, SMR, core, balance, resistance, plyometric, SAQ, corrective, phục hồi và các vùng khớp trọng yếu. PT có thể tìm nhanh theo tên bài, nhóm cơ, xương khớp hoặc mục tiêu huấn luyện.</p>
-          </div>
-
-          <div className="library-toolbar">
-            <input
-              value={techniqueQuery}
-              onChange={(e) => setTechniqueQuery(e.target.value)}
-              placeholder="Tìm: vai, gối, hông, core, squat, phục hồi..."
-            />
-            <select value={techniqueCategory} onChange={(e) => setTechniqueCategory(e.target.value)}>
-              {techniqueCategories.map((item) => (
-                <option key={item} value={item}>{item}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="library-stats">
-            <strong>{filteredTechniques.length}</strong>
-            <span>kỹ thuật đang hiển thị / tổng 150 kỹ thuật</span>
-          </div>
-
-          <div className="technique-table-wrap">
-            <table className="technique-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Kỹ thuật</th>
-                  <th>Nhóm</th>
-                  <th>Vùng cơ/xương/khớp</th>
-                  <th>Mục tiêu</th>
-                  <th>Cue huấn luyện</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredTechniques.map((item) => (
-                  <tr key={item.no}>
-                    <td>{item.no}</td>
-                    <td><b>{item.name}</b></td>
-                    <td><span className="category-pill">{item.category}</span></td>
-                    <td>{item.region}</td>
-                    <td>{item.goal}</td>
-                    <td>{item.cue}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
         <section className="ai-section">
           <div className="section-heading compact">
             <span>AI Meal Lookup</span>
@@ -672,67 +675,68 @@ button, textarea { font: inherit; }
 .academy-shell {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 330px 1fr;
-  background: linear-gradient(90deg, #fff 0%, #fff 58%, #fafafa 100%);
+  grid-template-columns: 300px 1fr;
+  background: #fff;
 }
 
 .sidebar {
   position: sticky;
   top: 0;
   height: 100vh;
-  padding: 28px;
+  padding: 24px;
   border-right: 1px solid var(--line);
   background: #fff;
   overflow-y: auto;
 }
 
 .brand-block { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
-.brand-mark { width: 48px; height: 48px; display: grid; place-items: center; background: var(--black); color: #fff; border-radius: 14px; font-weight: 900; font-size: 22px; box-shadow: 0 12px 30px rgba(0,0,0,0.18); }
-.brand-block h1 { margin: 0; font-size: 26px; letter-spacing: -0.04em; }
+.brand-mark { width: 42px; height: 42px; display: grid; place-items: center; background: var(--black); color: #fff; border-radius: 12px; font-weight: 900; font-size: 20px; }
+.brand-block h1 { margin: 0; font-size: 22px; letter-spacing: -0.04em; }
 .eyebrow, .tiny-title { margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.14em; font-size: 11px; font-weight: 800; color: var(--muted); }
 .red { color: var(--red); }
 
-.sidebar-card { padding: 20px; border: 1px solid var(--line); border-radius: 24px; background: var(--soft); margin-bottom: 22px; }
-.sidebar-card h2 { margin: 0 0 10px; font-size: 18px; letter-spacing: -0.02em; }
-.sidebar-card p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 14px; }
+.sidebar-card { padding: 18px; border: 1px solid var(--line); border-radius: 20px; background: #fafafa; margin-bottom: 18px; }
+.sidebar-card h2 { margin: 0 0 8px; font-size: 17px; letter-spacing: -0.02em; }
+.sidebar-card p { margin: 0; color: var(--muted); line-height: 1.5; font-size: 13px; }
 
 .module-nav { display: grid; gap: 10px; }
-.nav-item { border: 1px solid var(--line); background: #fff; color: var(--text); text-align: left; padding: 14px; border-radius: 18px; cursor: pointer; transition: 0.18s ease; }
-.nav-item span { display: block; font-weight: 800; font-size: 14px; }
-.nav-item small { display: block; color: var(--muted); margin-top: 4px; }
-.nav-item:hover { border-color: #111; transform: translateY(-1px); }
+.nav-item { border: 1px solid var(--line); background: #fff; color: var(--text); text-align: left; padding: 12px; border-radius: 14px; cursor: pointer; transition: 0.16s ease; }
+.nav-item span { display: block; font-weight: 800; font-size: 13px; }
+.nav-item small { display: block; color: var(--muted); margin-top: 3px; font-size: 12px; }
+.nav-item:hover { border-color: #111; }
 .nav-item.active { background: var(--black); color: #fff; border-color: var(--black); }
 .nav-item.active small { color: #d7d7d7; }
 
-.content { padding: 34px; max-width: 1380px; width: 100%; margin: 0 auto; }
-.hero { display: grid; grid-template-columns: 1fr 280px; gap: 24px; align-items: stretch; margin-bottom: 24px; }
-.hero > div:first-child { padding: 42px; border: 1px solid var(--line); border-radius: 34px; background: #fff; box-shadow: var(--shadow); }
-.hero h2 { margin: 0; font-size: clamp(36px, 5vw, 72px); letter-spacing: -0.07em; line-height: 0.92; color: var(--black); }
-.hero-copy { max-width: 760px; color: var(--muted); font-size: 17px; line-height: 1.7; margin: 24px 0 0; }
-.hero-panel { border-radius: 34px; background: linear-gradient(145deg, var(--black), #2a0002); color: #fff; padding: 30px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 280px; box-shadow: var(--shadow); }
-.hero-panel span { color: #eee; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
-.hero-panel strong { font-size: 64px; letter-spacing: -0.07em; color: #fff; }
+.content { padding: 28px; max-width: 1320px; width: 100%; margin: 0 auto; }
+.hero { display: grid; grid-template-columns: 1fr 220px; gap: 18px; align-items: stretch; margin-bottom: 18px; }
+.hero > div:first-child { padding: 32px; border: 1px solid var(--line); border-radius: 24px; background: #fff; }
+.hero h2 { margin: 0; font-size: clamp(34px, 4vw, 56px); letter-spacing: -0.06em; line-height: 0.98; color: var(--black); }
+.hero-copy { max-width: 760px; color: var(--muted); font-size: 16px; line-height: 1.65; margin: 18px 0 0; }
+.hero-panel { border-radius: 24px; background: var(--black); color: #fff; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 210px; }
+.hero-panel span { color: #ddd; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+.hero-panel strong { font-size: 58px; letter-spacing: -0.07em; color: #fff; line-height: 1; }
 .hero-panel small { color: #ffb4b7; }
 
-.grid-overview { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin-bottom: 24px; }
-.phase-card { border: 1px solid var(--line); background: #fff; border-radius: 22px; padding: 18px; min-height: 165px; }
-.phase-card span { font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; }
-.phase-card h3 { margin: 10px 0; font-size: 16px; letter-spacing: -0.02em; }
-.phase-card p { color: var(--muted); font-size: 13px; line-height: 1.5; min-height: 58px; }
-.phase-card b { font-size: 13px; }
+.grid-overview { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin: 18px 0; }
+.compact-overview { opacity: 0.98; }
+.phase-card { border: 1px solid var(--line); background: #fff; border-radius: 18px; padding: 14px; min-height: 130px; }
+.phase-card span { font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; }
+.phase-card h3 { margin: 8px 0; font-size: 14px; letter-spacing: -0.02em; }
+.phase-card p { color: var(--muted); font-size: 12px; line-height: 1.45; min-height: 48px; }
+.phase-card b { font-size: 12px; }
 
 .lesson-section { display: grid; grid-template-columns: 1fr 330px; gap: 24px; }
-.lesson-main, .ai-section { background: #fff; border: 1px solid var(--line); border-radius: 34px; padding: 30px; box-shadow: var(--shadow); }
+.lesson-main, .ai-section { background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 24px; }
 .section-heading span { display: inline-flex; color: var(--red); background: #fff1f1; border: 1px solid #ffd4d4; padding: 7px 10px; border-radius: 999px; font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; }
-.section-heading h2 { margin: 16px 0 12px; font-size: 34px; letter-spacing: -0.05em; color: var(--black); }
-.section-heading p { margin: 0 0 22px; color: var(--muted); line-height: 1.75; }
+.section-heading h2 { margin: 14px 0 10px; font-size: 30px; letter-spacing: -0.05em; color: var(--black); }
+.section-heading p { margin: 0 0 18px; color: var(--muted); line-height: 1.65; }
 .compact h2 { font-size: 30px; }
 
-.point-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
-.point-card { border: 1px solid var(--line); border-radius: 24px; padding: 20px; background: #fff; }
-.point-card h3 { margin: 0 0 10px; font-size: 18px; letter-spacing: -0.03em; }
-.point-card p { margin: 0; color: var(--muted); line-height: 1.65; font-size: 14px; }
-.cue { margin-top: 16px; padding: 12px; border-left: 4px solid var(--red); background: #fafafa; color: #222; font-size: 13px; line-height: 1.45; border-radius: 0 12px 12px 0; }
+.point-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+.point-card { border: 1px solid var(--line); border-radius: 18px; padding: 16px; background: #fff; }
+.point-card h3 { margin: 0 0 8px; font-size: 16px; letter-spacing: -0.03em; }
+.point-card p { margin: 0; color: var(--muted); line-height: 1.58; font-size: 13px; }
+.cue { margin-top: 12px; padding: 10px; border-left: 3px solid var(--red); background: #fafafa; color: #222; font-size: 12px; line-height: 1.42; border-radius: 0 10px 10px 0; }
 
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
 .info-box { border: 1px solid var(--line); border-radius: 24px; background: var(--soft); padding: 20px; }
@@ -745,23 +749,26 @@ ul, ol { margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.7; }
 .exercise-strip span { padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; background: #fff; font-size: 13px; font-weight: 700; }
 
 .lesson-side { display: grid; gap: 18px; align-content: start; }
-.side-panel { border: 1px solid var(--line); border-radius: 28px; background: #fff; padding: 24px; box-shadow: var(--shadow); }
+.side-panel { border: 1px solid var(--line); border-radius: 22px; background: #fff; padding: 20px; }
 .side-panel.black { background: var(--black); color: #fff; }
 .side-panel.black p { color: #ddd; line-height: 1.7; }
 .side-panel.black .tiny-title { color: #ffb4b7; }
 
-.technique-library, .ai-section { margin-top: 24px; background: #fff; border: 1px solid var(--line); border-radius: 34px; padding: 30px; box-shadow: var(--shadow); }
-.library-toolbar { display: grid; grid-template-columns: 1fr 240px; gap: 14px; margin: 18px 0; }
-.library-toolbar input, .library-toolbar select { width: 100%; border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; outline: none; background: #fff; color: var(--text); }
-.library-toolbar input:focus, .library-toolbar select:focus { border-color: var(--red); box-shadow: 0 0 0 4px rgba(179,18,23,0.08); }
-.library-stats { display: inline-flex; align-items: baseline; gap: 8px; padding: 10px 14px; border: 1px solid #ffd4d4; border-radius: 999px; background: #fff7f7; margin-bottom: 16px; }
-.library-stats strong { color: var(--red); font-size: 22px; }
+.technique-library, .ai-section { margin-top: 18px; background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 24px; }
+.featured-library { margin-top: 0; border: 1px solid #dedede; }
+.library-toolbar { display: grid; grid-template-columns: 1fr 220px; gap: 12px; margin: 16px 0 12px; }
+.library-toolbar input, .library-toolbar select { width: 100%; border: 1px solid var(--line); border-radius: 14px; padding: 13px 14px; outline: none; background: #fff; color: var(--text); }
+.library-toolbar input:focus, .library-toolbar select:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(179,18,23,0.07); }
+.library-summary-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.library-stats { display: inline-flex; align-items: baseline; gap: 8px; padding: 8px 12px; border: 1px solid #ffd4d4; border-radius: 999px; background: #fff7f7; }
+.library-stats strong { color: var(--red); font-size: 20px; }
 .library-stats span { color: var(--muted); font-size: 13px; }
-.technique-table-wrap { max-height: 620px; overflow: auto; border: 1px solid var(--line); border-radius: 24px; }
-.technique-table { width: 100%; border-collapse: collapse; min-width: 980px; font-size: 14px; }
-.technique-table th { position: sticky; top: 0; background: var(--black); color: #fff; text-align: left; padding: 14px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; z-index: 1; }
-.technique-table td { padding: 14px; border-bottom: 1px solid var(--line); vertical-align: top; color: #333; line-height: 1.5; }
-.technique-table tr:hover td { background: #fafafa; }
+.library-note { color: var(--muted); font-size: 13px; }
+.technique-table-wrap { max-height: 560px; overflow: auto; border: 1px solid var(--line); border-radius: 18px; }
+.technique-table { width: 100%; border-collapse: collapse; min-width: 980px; font-size: 13px; }
+.technique-table th { position: sticky; top: 0; background: #111; color: #fff; text-align: left; padding: 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; z-index: 1; }
+.technique-table td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; color: #333; line-height: 1.45; }
+.technique-table tr:hover td { background: #fbfbfb; }
 .category-pill { display: inline-flex; padding: 6px 9px; border-radius: 999px; background: #fff1f1; color: var(--red); font-weight: 900; font-size: 12px; }
 .ai-section { margin-top: 24px; }
 .ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
