@@ -4,8 +4,10 @@ import { useState, useEffect, useRef } from "react";
 const injectFonts = () => {
   if (document.querySelector("#pt-fonts")) return;
   const l = document.createElement("link"); l.id = "pt-fonts"; l.rel = "stylesheet";
- l.href = "https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap";};
-document.head.appendChild(l);
+  l.href = "https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap";
+  document.head.appendChild(l);
+};
+
 // ─── Design tokens ─────────────────────────────────────────────────────────
 const T = {
   red: "#C8102E", redLight: "#FFF0F2", redMid: "#F5D0D7",
@@ -91,7 +93,7 @@ const BodySVG = ({ view, primaryIds, secondaryIds }) => {
         const El = s.el;
         return <El key={id} {...p} fill={T.red} opacity={isPrimary?0.88:0.32} style={isPrimary?{filter:`drop-shadow(0 0 4px ${T.red}60)`}:{}} />;
       })}
-      <text x="90" y="334" textAnchor="middle" fill="#BBBBBB" fontSize="8" fontFamily=>"Be Vietnam Pro"front?"TRƯỚC":"SAU"}</text>
+      <text x="90" y="334" textAnchor="middle" fill="#BBBBBB" fontSize="8" fontFamily="DM Sans">{front?"TRƯỚC":"SAU"}</text>
     </svg>
   );
 };
@@ -106,8 +108,8 @@ const BodyDiagram = ({ ex }) => {
         </div>
       ))}
       <div style={{display:"flex",flexDirection:"column",gap:10}}>
-        <div style={{display:"flex",alignItems:"center",gap:8}}><div style={{width:14,height:14,borderRadius:3,background:T.red,opacity:0.88}}/><span style={{color:T.charcoal,fontSize:12,fontFamily:"Be Vietnam Pro"}}>Cơ chính</span></div>
-        <div style={{display:"flex",alignItems:"center",gap:8}}><div style={{width:14,height:14,borderRadius:3,background:T.red,opacity:0.32}}/><span style={{color:T.grey,fontSize:12,fontFamily:"Be Vietnam Pro"}}>Cơ phụ</span></div>
+        <div style={{display:"flex",alignItems:"center",gap:8}}><div style={{width:14,height:14,borderRadius:3,background:T.red,opacity:0.88}}/><span style={{color:T.charcoal,fontSize:12,fontFamily:"DM Sans"}}>Cơ chính</span></div>
+        <div style={{display:"flex",alignItems:"center",gap:8}}><div style={{width:14,height:14,borderRadius:3,background:T.red,opacity:0.32}}/><span style={{color:T.grey,fontSize:12,fontFamily:"DM Sans"}}>Cơ phụ</span></div>
       </div>
     </div>
   );
@@ -761,7 +763,7 @@ export default function PTApp() {
             <div style={{width:28,height:28,background:T.red,borderRadius:4,display:"flex",alignItems:"center",justifyContent:"center"}}>
               <div style={{width:12,height:12,border:"2px solid #fff",borderRadius:"50%"}} />
             </div>
-            <div style={{color:"#fff",fontSize:16,fontFamily:"Oswald",fontWeight:700,letterSpacing:2}}>Academy PT by Master Armin HuyTran</div>
+            <div style={{color:"#fff",fontSize:16,fontFamily:"Oswald",fontWeight:700,letterSpacing:2}}>PT PRO</div>
           </div>
           <div style={{color:"#555",fontSize:10,fontFamily:"DM Sans",letterSpacing:1.5}}>NASM STANDARD · INTERNAL</div>
         </div>
